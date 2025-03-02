@@ -3,7 +3,7 @@
     <ul>
         @forelse ($jobs as $job)
         {{-- bcs we use Eloquent we change the sintax from {{$job['title']}} to $job->title --}}
-            <li>{{$job->title}}</li>
+            <li>{{$job->title}} -  {{$job->description}}</li>
         @empty
             <li>No jobs</li>
         @endforelse
