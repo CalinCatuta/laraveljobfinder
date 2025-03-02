@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\View\View;
 use App\Models\Job;
 
@@ -28,9 +29,20 @@ class JobController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(Request $request): RedirectResponse
     {
-        //
+        // in routes we need to create a post route for 'store'
+        // Laravel have protection for cross-site req forgeries and we need to use @csrf in the form
+
+        $title = $request->input('title');
+        $description = $request->input('description');
+
+        Job::create([
+            'title' => $title,
+            'description' => $description,
+        ]);
+        // In your routes/web.php, you should have a route for listing jobs with the name jobs.index.
+        return redirect()->route('jobs.index');
     }
 
     /**
