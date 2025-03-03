@@ -35,6 +35,8 @@ return new class extends Migration
             $table->string('company_website')->nullable();
 
             // Add user foriegn key constraint
+            // we take the user_id from the table and we references to the id field on the user table.
+            // we delete the job listing if the account is deleted
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }
