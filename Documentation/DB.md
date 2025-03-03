@@ -58,3 +58,7 @@ php artisan make:migration create_job_listings_table
 ```
 
 -   This will create a new migrations in database folder with basic setup.
+
+```bash
+php artisan make:migration add_fields_to_job_listings_table --table=job_listings
+```
