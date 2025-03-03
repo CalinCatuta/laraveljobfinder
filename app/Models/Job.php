@@ -39,7 +39,6 @@ class Job extends Model
     // Relation to user
     public function user(): BelongsTo
     {
-        // `this` meaning the job.
         return $this->belongsTo(User::class);
     }
 
