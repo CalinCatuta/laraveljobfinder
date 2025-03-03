@@ -34,12 +34,15 @@ class JobController extends Controller
         // in routes we need to create a post route for 'store'
         // Laravel have protection for cross-site req forgeries and we need to use @csrf in the form
 
-        $title = $request->input('title');
-        $description = $request->input('description');
+        $validatedData = $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+        ]);
+
 
         Job::create([
-            'title' => $title,
-            'description' => $description,
+            'title' => $validatedData['title'],
+            'description' => $validatedData['description'],
         ]);
         // In your routes/web.php, you should have a route for listing jobs with the name jobs.index.
         return redirect()->route('jobs.index');
